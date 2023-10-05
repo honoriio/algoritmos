@@ -9,7 +9,7 @@ inicio
    escreval("==============================================")
    escreval("==============================================")
    escreval("==============================================")
-   escreval("               MENU SELETOR                   ")
+   escreval("              MENU  SELETOR                   ")
    escreval("              [1] CADASTRO                    ")
    escreval("              [2] CANCELAR                    ")
    escreval("==============================================")
@@ -52,7 +52,7 @@ inicio
 
    se (esc_menu1 = 1) entao
 
-      repita
+repita
          limpatela
          timer (300)
          escreval("================ CARREGANDO ==================")
@@ -118,12 +118,10 @@ inicio
       caso 2
          dados <- 2
       fimescolha
-      se (dados = 1) entao
-         escreval(" DADOS CONFIRMADOS COM SUCESSO! ")
-      fimse
-      limpatela
-      ate (dados = 1)
-      se (dados = 2) entao
+      
+       se (dados = 2) entao
+         limpatela
+         timer(200)
          escreval(" Reiniciaremos o cadastro!")
          escreval("")
          escreva(" 3 ")
@@ -139,12 +137,33 @@ inicio
          escreva(".")
          escreva(".")
          limpatela
+         timer(0)
+
+
       fimse
 
-   
+      se (dados = 1) entao
+         escreval(" DADOS CONFIRMADOS COM SUCESSO! ")
+      fimse
+      limpatela
+      ate (dados = 1)
 
-
-
+         limpatela
+         timer (300)
+         escreval("================ CARREGANDO ==================")
+         escreva("[")
+         escreva("######")
+         escreva("######")
+         escreva("######")
+         escreva("######")
+         escreva("######")
+         escreva("######")
+         escreva("######")
+         escreva("###")
+         escreva("]")
+         limpatela
+         
+   timer(100)
    escreval("==============================================")
    escreval("               MENU SELETOR                   ")
    escreval("              [1] EMPRÉSTIMO                  ")
@@ -197,7 +216,7 @@ inicio
    escreval("==============================================")
    escreval("$$$$$$$$$$$$$$$ EMPRÉSTIMO $$$$$$$$$$$$$$$$$$$")
    escreval("==============================================")
-   escreva(" INFORME O VALOR QUE DESEJA :")
+   escreva(" INFORME O VALOR QUE DESEJA R$")
    leia (valor)
 
 fimalgoritmo
