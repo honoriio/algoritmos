@@ -177,7 +177,8 @@ inicio
    se (esc_menu2 = 0) entao
       fimalgoritmo
    fimse
-   timer (100)
+   limpatela
+   timer (300)
    escreval("================ CARREGANDO ==================")
    escreva("[")
    escreva("$$$$$$")
