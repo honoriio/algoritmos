@@ -1,7 +1,7 @@
 algoritmo "HORÚS BANK"
 var
    valor: real
-   esc_menu1, esc_menu2, idade, dados : inteiro
+   esc_menu1, esc_menu2, idade, dados, parcela, parc_unica, quantia_parc, retorno : inteiro
    descisao, nome, cidade, cep, nasc, estado: caracter
 inicio
    escreval("==============================================")
@@ -94,6 +94,7 @@ repita
          leia( estado)
          escreval("==============================================")
          escreval("==============================================")
+         limpatela
 
       fimse
       escreval("==============================================")
@@ -162,7 +163,8 @@ repita
          escreva("###")
          escreva("]")
          limpatela
-         
+
+   repita
    timer(100)
    escreval("==============================================")
    escreval("               MENU SELETOR                   ")
@@ -187,15 +189,47 @@ repita
       escreva("Deseja continuar? [S / N] : ")
       leia (descisao)
       escreval("==============================================")
+      limpatela
 
    fimse
-   se (descisao = "N") entao
-      escreval("XXXXXXXXXX OPERAÇÃO FINALIZADA XXXXXXXXXXX")
-       escreval("==============================================")
+   se (descisao = "N") ou (descisao = "n") entao
+      escreval("==============================================")
+      escreval(" DESEJA VOLTAR AO MENU ANTERIOR? ")
+      escreval("==============================================")
+      escreval(" [1] SIM  [2] NÃO  ")
+      escreval("==============================================")
+      escreva("  ")
+      leia(retorno)
+      limpatela
    fimse
-   se (esc_menu2 = 0) entao
+   
+   escolha retorno
+           caso 1
+                retorno <- 1
+           caso 2
+                retorno <- 2
+   fimescolha
+   ate (retorno = 2 )
+   se (retorno = 2 )entao
+      limpatela
+      escreval("==============================================")
+      escreval("  XXXXXXXXXX PROGRAMA ENCERRADO  XXXXXXXXXXX  ")
+      escreval("==============================================")
       fimalgoritmo
    fimse
+
+
+      
+
+   
+   se (esc_menu2 = 0) entao
+       limpatela
+       escreval("==============================================")
+       escreval("XXXXXXXXXX PROGRAMA ENCERRADO XXXXXXXXXXX")
+       escreval("==============================================")
+      fimalgoritmo
+   fimse
+   
    limpatela
    timer (300)
    escreval("================ CARREGANDO ==================")
@@ -218,5 +252,41 @@ repita
    escreval("==============================================")
    escreva(" INFORME O VALOR QUE DESEJA R$")
    leia (valor)
+   limpatela
+   escreval("================================================== ")
+   escreval(" NOSSAS TAXAS DE JUROS SÃO AS MELHORES DO MERCADO! ")
+   escreval("---------------------------------------------------")
+   escreval(" AS TAXAS DE JUROS SÃO MENORES DO QUE 7% AO MÊS!")
+   escreval("---------------------------------------------------")
+   escreval(" OFERECEMOS A POSSIBILIDADE DE QUITAÇÃO ANTECIPADA!")
+   escreval("===================================================")
+   escreva (" DESEJA PARCELAR? [1] SIM [2] NÃO :")
+   leia(parcela)
+   escolha parcela
+           caso 1
+                parcela <- 1
+           caso 2
+                parcela <- 0
+   fimescolha
+   se (parcela = 1 ) entao
+      escreva(" DESEJA PARCELAR EM QUANTAS VEZES? :")
+      leia(quantia_parc)
+   fimse
+
+   se (parcela = 0 ) entao
+      escreval(" DESEJA PAGAR EM UMA UNICA PARCELA?: ")
+      escreva (" [1] SIM [2] NÃO ")
+      leia (parc_unica)
+   fimse
+   escolha parc_unica
+           caso 1
+                parc_unica <- 1
+           caso 2
+                parc_unica <- 0
+   fimescolha
+   
+
+   
 
 fimalgoritmo
+
