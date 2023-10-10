@@ -1,9 +1,10 @@
 algoritmo "HORÚS BANK"
 var
-   valor: real
-   esc_menu1, esc_menu2, idade, dados, parcela, parc_unica, quantia_parc, retorno : inteiro
+   valor, valor_parcela, valor_final, percentual: real
+   esc_menu1, esc_menu2, idade, dados, parcela, parc_unica, quantia_parc, retorno  : inteiro
    descisao, nome, cidade, cep, nasc, estado: caracter
 inicio
+// apresentação do programa (pagina inicial)
    escreval("==============================================")
    escreval("$$$$$$$$$$$$$$$ HORÚS BANK $$$$$$$$$$$$$$$$$$$")
    escreval("==============================================")
@@ -26,7 +27,7 @@ inicio
       esc_menu1 <- 2
    fimescolha
 
-
+   // tela que aparecera caso o usuario se recuse a fazer o cadastro
    se (esc_menu1 = 2) entao
       limpatela
       timer (300)
@@ -48,8 +49,10 @@ inicio
       escreval("==============================================")
       fimalgoritmo
    fimse
+   // fim tela de negação de cadastro
 
-
+  // tela de carregamento para a tela de cadastro
+  
    se (esc_menu1 = 1) entao
 
 repita
@@ -67,7 +70,9 @@ repita
          escreva("###")
          escreva("]")
          limpatela
-
+ // fim tela de carregamento de cadastro
+ 
+ // tela de cadastro
          timer(0)
 
          Escreval
@@ -95,7 +100,9 @@ repita
          escreval("==============================================")
          escreval("==============================================")
          limpatela
-
+   // fim tela de cadastro
+   
+   // tela de confirmação de dados de cadastro
       fimse
       escreval("==============================================")
       escreval("*********** CONFIRMAÇÃO DOS DADOS  ***********")
@@ -119,7 +126,9 @@ repita
       caso 2
          dados <- 2
       fimescolha
+// fim tela de confirmação de dados cadastrais.
 
+// tela de reinicialização de cadastro
        se (dados = 2) entao
          limpatela
          timer(200)
@@ -142,13 +151,17 @@ repita
 
 
       fimse
-
+ // fim tela de reinicialização de cadastro
+ 
+ // tela de dados confirmados com sucesso
       se (dados = 1) entao
          escreval(" DADOS CONFIRMADOS COM SUCESSO! ")
       fimse
       limpatela
       ate (dados = 1)
+ // fim tela de dados confirmados com sucesso
 
+ // tela de caregamento de menu para funççoes de emprestimo, financiamento.
          limpatela
          timer (300)
          escreval("================ CARREGANDO ==================")
@@ -163,7 +176,10 @@ repita
          escreva("###")
          escreva("]")
          limpatela
+         
+// fim tela de menu de funções de emprestimo, financiamento.
 
+// tela de menu seletor de emprestimo
    repita
    timer(100)
    escreval("==============================================")
@@ -183,6 +199,9 @@ repita
            caso 3
                 esc_menu2 <- 0
    fimescolha
+// fim de tela de menu seletor de emprestimo
+
+// tela de confirmação de seleção de função
 
    se (esc_menu2 = 1) entao
       escreval("Você escolheu a opção 1 : EMPRÉSTIMO! ")
@@ -193,6 +212,9 @@ repita
       limpatela
 
    fimse
+// fim tela de confirmação de seleção de função
+
+// tela de voltar ao menu anterrio (menu emprestimo)
    retorno <- 0
    se (descisao = "N") ou (descisao = "n") entao
       escreval("==============================================")
@@ -204,7 +226,10 @@ repita
       leia(retorno)
       limpatela
    fimse
-
+ // fim tela de voltar ao menu anterior (menu emprestimo)
+ 
+ // tela de programa encerrado caso o usuario não deseje voltar para o menu
+ //anterior
    escolha retorno
            caso 1
                 retorno <- 1
@@ -218,9 +243,11 @@ repita
       escreval("==============================================")
       fimalgoritmo
    fimse
+ // fim tela de encerramento de programa por rejeição
 
    ate (retorno = 0 )
 
+// tela de encerramento do menu 2
    se (esc_menu2 = 0) entao
        limpatela
        escreval("==============================================")
@@ -228,7 +255,10 @@ repita
        escreval("==============================================")
       fimalgoritmo
    fimse
+// fim tela de encerramento de menu 2
 
+
+// tela de carregamento para a simulação de emprestimo
    limpatela
    timer (300)
    escreval("================ CARREGANDO ==================")
@@ -243,7 +273,9 @@ repita
    escreva("$$$")
    escreva("]")
    limpatela
+// fim tela de carregamento de simulaçao de emprestimo.
 
+// tela de emprestimo
    timer(0)
    Escreval
    escreval("==============================================")
@@ -283,6 +315,16 @@ repita
            caso 2
                 parc_unica <- 0
    fimescolha
+// fim tela de emprestimo.
+
+    //Fazer a parte do calculo de porcentagem de forma que
+    //quanto mais parcelas forem feitas, mais juros são adicionados!.
+   percentual <- ( quantia_parc * 100) / 10
+   valor_final <- (valor + percentual)
+   valor_parcela <- (valor_final + percentual) / quantia_parc
+   escreval(valor_parcela)
+
+   //Parte do calculo de porcentagem acima.
 
 
 
