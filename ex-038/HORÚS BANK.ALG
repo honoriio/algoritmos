@@ -25,8 +25,8 @@ inicio
    caso 2
       esc_menu1 <- 2
    fimescolha
-   
-   
+
+
    se (esc_menu1 = 2) entao
       limpatela
       timer (300)
@@ -119,7 +119,7 @@ repita
       caso 2
          dados <- 2
       fimescolha
-      
+
        se (dados = 2) entao
          limpatela
          timer(200)
@@ -183,6 +183,7 @@ repita
            caso 3
                 esc_menu2 <- 0
    fimescolha
+
    se (esc_menu2 = 1) entao
       escreval("Você escolheu a opção 1 : EMPRÉSTIMO! ")
       escreval("==============================================")
@@ -192,6 +193,7 @@ repita
       limpatela
 
    fimse
+   retorno <- 0
    se (descisao = "N") ou (descisao = "n") entao
       escreval("==============================================")
       escreval(" DESEJA VOLTAR AO MENU ANTERIOR? ")
@@ -202,15 +204,14 @@ repita
       leia(retorno)
       limpatela
    fimse
-   
+
    escolha retorno
            caso 1
                 retorno <- 1
            caso 2
                 retorno <- 2
    fimescolha
-   ate (retorno = 2 )
-   se (retorno = 2 )entao
+    se (retorno = 2 )entao
       limpatela
       escreval("==============================================")
       escreval("  XXXXXXXXXX PROGRAMA ENCERRADO  XXXXXXXXXXX  ")
@@ -218,10 +219,8 @@ repita
       fimalgoritmo
    fimse
 
+   ate (retorno = 0 )
 
-      
-
-   
    se (esc_menu2 = 0) entao
        limpatela
        escreval("==============================================")
@@ -229,7 +228,7 @@ repita
        escreval("==============================================")
       fimalgoritmo
    fimse
-   
+
    limpatela
    timer (300)
    escreval("================ CARREGANDO ==================")
@@ -244,7 +243,7 @@ repita
    escreva("$$$")
    escreva("]")
    limpatela
-   
+
    timer(0)
    Escreval
    escreval("==============================================")
@@ -284,9 +283,9 @@ repita
            caso 2
                 parc_unica <- 0
    fimescolha
-   
 
-   
+
+
+
 
 fimalgoritmo
-
