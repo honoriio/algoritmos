@@ -1,7 +1,7 @@
 algoritmo "HORÚS BANK"
 var
-   valor, valor_parcela, valor_final, percentual: real
-   esc_menu1, esc_menu2, idade, dados, parcela, parc_unica, quantia_parc, retorno  : inteiro
+   valor, valor_parcela, valor_final, porcent, valor_parc , juros, tcj, parc_unica, cnpj, juro_variavel, n_cnpj : real
+   esc_menu1, esc_menu2, idade, dados, parcela,  quantia_parc, retorno  : inteiro
    descisao, nome, cidade, cep, nasc, estado: caracter
 inicio
 // apresentação do programa (pagina inicial)
@@ -32,7 +32,7 @@ inicio
       limpatela
       timer (300)
       escreval("==============================================")
-      escreval(" NÃO PODEMOS CONTINUAR SEM O CADASTRO...   ")
+      escreval(" NÃO PODEMOS CONTINUAR SEM O CADASTRO...      ")
       escreval("==============================================")
       escreval("")
       escreva(" O PROGRAMA SERA ENCERRADO")
@@ -188,7 +188,6 @@ repita
    escreval("              [2] FINANCIAMENTO               ")
    escreval("              [3] CANCELAR                    ")
    escreval("==============================================")
-   escreval("==============================================")
    escreva(" INFORME QUAL OPÇÃO DESEJA : ")
    leia (esc_menu2)
    escolha esc_menu2
@@ -206,7 +205,9 @@ repita
    se (esc_menu2 = 1) entao
       escreval("Você escolheu a opção 1 : EMPRÉSTIMO! ")
       escreval("==============================================")
-      escreva("Deseja continuar? [S / N] : ")
+      escrevaL("        Deseja continuar? [S / N] :           ")
+      escreval("==============================================")
+      escreva("Escolha: ")
       leia (descisao)
       escreval("==============================================")
       limpatela
@@ -218,9 +219,9 @@ repita
    retorno <- 0
    se (descisao = "N") ou (descisao = "n") entao
       escreval("==============================================")
-      escreval(" DESEJA VOLTAR AO MENU ANTERIOR? ")
+      escreval("       DESEJA VOLTAR AO MENU ANTERIOR?        ")
       escreval("==============================================")
-      escreval(" [1] SIM  [2] NÃO  ")
+      escreval("             [1] SIM  [2] NÃO                 ")
       escreval("==============================================")
       escreva("  ")
       leia(retorno)
@@ -281,18 +282,49 @@ repita
    escreval("==============================================")
    escreval("$$$$$$$$$$$$$$$ EMPRÉSTIMO $$$$$$$$$$$$$$$$$$$")
    escreval("==============================================")
-   escreva(" INFORME O VALOR QUE DESEJA R$")
+   escrevaL("       INFORME O VALOR QUE DESEJA             ")
+   escreval("==============================================")
+   escreva("VALOR : R$")
    leia (valor)
    limpatela
    escreval("================================================== ")
    escreval(" NOSSAS TAXAS DE JUROS SÃO AS MELHORES DO MERCADO! ")
    escreval("---------------------------------------------------")
-   escreval(" AS TAXAS DE JUROS SÃO MENORES DO QUE 7% AO MÊS!")
+   escreval(" PARA CNPJ OS JUROS SÃO MENORES DO QUE 9% AO MÊS!  ")
    escreval("---------------------------------------------------")
    escreval(" OFERECEMOS A POSSIBILIDADE DE QUITAÇÃO ANTECIPADA!")
    escreval("===================================================")
-   escreva (" DESEJA PARCELAR? [1] SIM [2] NÃO :")
+   escrevaL("                VOCÊ TEM CNPJ?                     ")
+   escreval("              [1] SIM  [2] NÃO                     ")
+   escreval("===================================================")
+   escreva("")
+   leia(cnpj)
+   limpatela
+   escolha cnpj
+           caso 1
+                cnpj <- 1
+                juro_variavel <- 9
+           caso 2
+                cnpj <- 0
+                juro_variavel <- 12
+   fimescolha
+   
+   se (cnpj = 1) entao
+   escreval("==================================================")
+   escreval("           INFORME O NUMERO DO CNPJ               ")
+   escreval("==================================================")
+   escreva("CNPJ: ")
+   leia(n_cnpj)
+   fimse
+   limpatela
+   
+   escreval("===================================================")
+   escrevaL("               DESEJA PARCELAR?                    ")
+   escreval("               [1] SIM [2] NÃO                     ")
+   escreval("===================================================")
+   escreva("")
    leia(parcela)
+   limpatela
    escolha parcela
            caso 1
                 parcela <- 1
@@ -300,14 +332,23 @@ repita
                 parcela <- 0
    fimescolha
    se (parcela = 1 ) entao
-      escreva(" DESEJA PARCELAR EM QUANTAS VEZES? :")
+      escreval("===================================================")
+      escreval(" DESEJA PARCELAR EM QUANTAS PARCELAS? ")
+      escreval("===================================================")
+      escreva (" PARCELAS: ")
       leia(quantia_parc)
+      limpatela
    fimse
 
    se (parcela = 0 ) entao
-      escreval(" DESEJA PAGAR EM UMA UNICA PARCELA?: ")
-      escreva (" [1] SIM [2] NÃO ")
+      escreval("===================================================")
+      escreval("        DESEJA PAGAR EM UMA UNICA PARCELA?         ")
+      escreval("                [1] SIM [2] NÃO                    ")
+      escreval("===================================================")
+      escreva("")
       leia (parc_unica)
+      limpatela
+
    fimse
    escolha parc_unica
            caso 1
@@ -315,14 +356,61 @@ repita
            caso 2
                 parc_unica <- 0
    fimescolha
+   
+
 // fim tela de emprestimo.
 
     //Fazer a parte do calculo de porcentagem de forma que
     //quanto mais parcelas forem feitas, mais juros são adicionados!.
-   percentual <- ( quantia_parc * 100) / 10
-   valor_final <- (valor + percentual)
-   valor_parcela <- (valor_final + percentual) / quantia_parc
-   escreval(valor_parcela)
+    
+   se (parcela = 1) entao
+   porcent <- (valor * juro_variavel ) / 100
+   juros <- (porcent * quantia_parc)
+   tcj <- (valor + juros )
+   valor_parc <- (tcj / quantia_parc)
+   escreval("=======================================================")
+   escreval("**************** CONFERENCIA **************************")
+   escreval("=======================================================")
+   escreval("")
+   escreval("-------------------------------------------------------")
+   escreval("Valor solicitado: R$",valor)
+   escreval("-------------------------------------------------------")
+   escreval("Valor dos juros: R$", juros)
+   escreval("-------------------------------------------------------")
+   escreval("Valor total com juros: R$",tcj)
+   escreval("-------------------------------------------------------")
+   escreval("Valor das parcelas: R$",valor_parc)
+   escreval("-------------------------------------------------------")
+   escreval("Ficaram", quantia_parc, " Parcelas de: R$",valor_parc)
+   escreval("-------------------------------------------------------")
+   escreval("=======================================================")
+   fimse
+   
+   se (parc_unica = 1) entao
+   porcent <- (valor * juro_variavel ) / 100
+   juros <- (porcent * parc_unica)
+   tcj <- (valor + juros )
+   valor_parc <- (tcj / parc_unica)
+   parc_unica <- ( valor + juros)
+   
+   escreval("=======================================================")
+   escreval("**************** CONFERENCIA **************************")
+   escreval("=======================================================")
+   escreval("")
+   escreval("-------------------------------------------------------")
+   escreval("Valor solicitado: R$",valor)
+   escreval("-------------------------------------------------------")
+   escreval("Valor dos juros: R$", juros)
+   escreval("-------------------------------------------------------")
+   escreval("Valor total com juros: R$",tcj)
+   escreval("-------------------------------------------------------")
+   escreval("Valor da parcela: R$",parc_unica)
+   escreval("-------------------------------------------------------")
+   escreval("Valor para ser Pago em uma unica Parcela de R$",parc_unica)
+   escreval("-------------------------------------------------------")
+   escreval("=======================================================")
+   fimse
+   
 
    //Parte do calculo de porcentagem acima.
 
